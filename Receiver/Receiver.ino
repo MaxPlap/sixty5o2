@@ -13,14 +13,20 @@ char PROTOCOL_FAILURE = 'f';
 // ***** Important ** Change according to the Arduino PINs that you use *****
 // **************************************************************************
 
+// Data output pins connected to the 6522; values for the Arduino Pro Mini
+//const byte DATA[] = {2, 3, 4, 5, 6, 7, 8, 9};
+
 // Data output pins connected to the 6522; values for the Arduino Mega
-const byte DATA[] = {31, 33, 35, 37, 39, 41, 43, 45};
+ const byte DATA[] = {31, 33, 35, 37, 39, 41, 43, 45};
 
 // Data output pins connected to the 6522; values for Arduino Nano
 // const byte DATA[] = {5, 6, 7, 8, 9, 10, 11, 12};
 
+// Interrupt PIN on the Arduino Pro Mini connected directly to the IRQB pin (PIN4) of the 6502(!)
+//#define INTERRUPT 17
+
 // Interrupt PIN on the Arduino Mega connected directly to the IRQB pin (PIN4) of the 6502(!)
-#define INTERRUPT 53
+ #define INTERRUPT 53
 
 // Interrupt PIN on the Arduino Nano connected directly to the IRQB pin (PIN4) of the 6502(!)
 // #define INTERRUPT 3
