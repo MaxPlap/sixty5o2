@@ -956,10 +956,6 @@ LCD__send_instruction:
 ;================================================================================
 ;
 ;   LCD__send_data - sends content data to the LCD controller
-;
-;   In contrast to instructions, there seems to be no constraint, and data can
-;   be sent at any rate to the display (see LCD__send_instruction)
-;   ————————————————————————————————————
 ;   Preparatory Ops: .A: Content Byte
 ;
 ;   Returned Values: none
@@ -973,8 +969,9 @@ LCD__send_data:
     sta PORTB                                   ; write accumulator content into PORTB
     lda #(RS | E)
     sta PORTA                                   ; set E bit AND register select bit to send instruction
-    lda #0
-    sta PORTA                                   ; clear RS/RW/E bits
+.loop                                           ; wait until LCD becomes ready
+    jsr LCD__check_busy_flag
+    bne .loop
 
     rts
 
